@@ -1,9 +1,10 @@
-import { Hero } from "../../components";
+import { FeaturedProducts, Hero } from "../../components";
 
 const Landing = () => {
   return (
     <>
       <Hero />
+      <FeaturedProducts />
     </>
   );
 };
