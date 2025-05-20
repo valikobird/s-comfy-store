@@ -14,7 +14,7 @@ import {
 } from "./pages";
 import { ErrorElement } from "./components";
 
-import { landingLoader } from "./pages/Landing";
+import { default as landingLoader } from "./pages/Landing/loader";
 
 const router = createBrowserRouter([
   {
