@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import Checkout from "./Checkout";
 import Error from "./Error";
 import HomeLayout from "./HomeLayout";
-import Landing from "./Landing";
+import { Landing } from "./Landing";
 import Login from "./Login";
 import Orders from "./Orders";
 import Products from "./Products";
