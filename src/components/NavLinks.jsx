@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 const links = [
   { id: 1, url: "/", text: "home" },
@@ -16,7 +16,12 @@ const NavLinks = () => {
         const { id, url, text } = link;
         return (
           <li key={id}>
-            <NavLink to={url} className="capitalize">
+            <NavLink
+              to={url}
+              className={({ isActive }) =>
+                `capitalize ${isActive && "bg-primary text-primary-content"}`
+              }
+            >
               {text}
             </NavLink>
           </li>
