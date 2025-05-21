@@ -8,7 +8,7 @@ import Login from "./Login";
 import Orders from "./Orders";
 import Products from "./Products";
 import Register from "./Register";
-import SingleProduct from "./SingleProduct";
+import { SingleProduct } from "./SingleProduct";
 
 export {
   About,
