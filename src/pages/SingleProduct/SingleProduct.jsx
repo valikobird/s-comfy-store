@@ -40,17 +40,19 @@ const SingleProduct = () => {
           </h4>
           <p className="mt-3 text-xl">{dollarsAmount}</p>
           <p className="mt-6 leading-8">{description}</p>
-          <div className="mt-6">
-            <h4 className="text-md font-medium tracking-wide capitalize">
-              colors
-            </h4>
-            <div className="mt-2">
+          <div className="mt-6 form-control">
+            <label className="label">
+              <h4 className="text-md font-medium tracking-wide capitalize">
+                colors
+              </h4>
+            </label>
+            <div>
               {colors.map((color) => {
                 return (
                   <button
                     key={color}
                     type="button"
-                    className={`badge w-6 h-6 mr-2 cursor-pointer ${color === productColor && "border-2 border-secondary"}`}
+                    className={`badge w-6 h-6 mr-2 cursor-pointer rounded-md ${color === productColor && "border-2 border-secondary"}`}
                     style={{ backgroundColor: color }}
                     onClick={() => setProductColor(color)}
                   ></button>
