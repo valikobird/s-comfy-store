@@ -1,5 +1,11 @@
+import ProductsContainer from "../../components/ProductsContainer";
+
 const Products = () => {
-  return <h2 className="text-4xl">Products</h2>;
+  return (
+    <>
+      <ProductsContainer />
+    </>
+  );
 };
 
 export default Products;
