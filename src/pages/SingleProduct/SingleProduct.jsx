@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { formatPrice } from "../../utils";
+import { formatPrice, generateQuantityOptions } from "../../utils";
 import { useState } from "react";
 
 const SingleProduct = () => {
@@ -9,6 +9,11 @@ const SingleProduct = () => {
   const dollarsAmount = formatPrice(price);
 
   const [productColor, setProductColor] = useState(colors[0]);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantity = (e) => {
+    setQuantity(+e.target.value);
+  };
 
   return (
     <section>
@@ -52,6 +57,29 @@ const SingleProduct = () => {
                 );
               })}
             </div>
+          </div>
+          <div className="mt-6 form-control w-full max-w-xs">
+            <label className="label" htmlFor="quantity">
+              <h4 className="text-md font-medium tracking-wide capitalize">
+                Quantity
+              </h4>
+            </label>
+            <select
+              id="quantity"
+              className="select select-secondary select-md"
+              value={quantity}
+              onChange={handleQuantity}
+            >
+              {generateQuantityOptions(5)}
+            </select>
+          </div>
+          <div className="mt-10">
+            <button
+              className="btn btn-primary btn-md uppercase"
+              onClick={() => console.log("Added to bag")}
+            >
+              Add to bag
+            </button>
           </div>
         </div>
       </div>
