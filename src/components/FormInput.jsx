@@ -1,11 +1,13 @@
-const FormInput = ({ label, name, type, defaultValue }) => {
+const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
     <fieldset className="fieldset">
-      <legend className="fieldset-legend capitalize">{label}</legend>
+      <label htmlFor={name} className="label">
+        <span className="label-text capitalize">{label}</span>
+      </label>
       <input
         type={type}
         name={name}
-        className="input"
+        className={`input w-full ${size ? size : ""}`}
         defaultValue={defaultValue}
       />
     </fieldset>

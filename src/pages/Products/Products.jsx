@@ -1,8 +1,9 @@
-import ProductsContainer from "../../components/ProductsContainer";
+import { ProductsContainer, Filters } from "../../components";
 
 const Products = () => {
   return (
     <>
+      <Filters />
       <ProductsContainer />
     </>
   );
