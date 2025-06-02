@@ -1,8 +1,20 @@
 import { formatPrice, generateQuantityOptions } from "../utils/index.jsx";
+import { useDispatch } from "react-redux";
+import { editItem, removeItem } from "../features/cart/cartSlice.jsx";
 
 const CartItem = ({ cartItem }) => {
   const { cartId, title, price, image, quantity, company, productColor } =
     cartItem;
+
+  const dispatch = useDispatch();
+
+  const removeItemFromCart = () => {
+    dispatch(removeItem({ product: { cartId } }));
+  };
+
+  const handleQuantity = (e) => {
+    dispatch(editItem({ product: { cartId, quantity: +e.target.value } }));
+  };
 
   return (
     <article
@@ -25,7 +37,7 @@ const CartItem = ({ cartItem }) => {
           ></span>
         </p>
       </div>
-      <div className="sm:ml-24">
+      <div className="sm:ml-12">
         <div className="fieldset max-w-xs">
           <label htmlFor="quantity" className="label p-0">
             <span className="label-text">Quantity</span>
@@ -34,11 +46,16 @@ const CartItem = ({ cartItem }) => {
             name="quantity"
             id="quantity"
             className="mt-2 select select-xs"
+            value={quantity}
+            onChange={handleQuantity}
           >
             {generateQuantityOptions(quantity + 5)}
           </select>
         </div>
-        <button className="mt-2 link link-primary link-hover text-sm capitalize">
+        <button
+          className="mt-2 link link-primary link-hover text-sm capitalize"
+          onClick={removeItemFromCart}
+        >
           remove
         </button>
       </div>
