@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const links = [
   { id: 1, url: "/", text: "home" },
