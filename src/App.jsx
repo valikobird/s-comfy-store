@@ -19,6 +19,9 @@ import { default as singleProductLoader } from "./pages/SingleProduct/loader";
 import { default as productsLoader } from "./pages/Products/loader";
 
 import { action as registerAction } from "./pages/Register/actions";
+import { action as loginAction } from "./pages/Login/actions";
+
+import { store } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
     errorElement: <Error />,
+    action: loginAction(store),
   },
   {
     path: "/register",
