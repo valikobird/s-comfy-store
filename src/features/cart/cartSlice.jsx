@@ -35,6 +35,10 @@ const cartSlice = createSlice({
 
       toast.success("Item added to cart");
     },
+    clearCart: () => {
+      localStorage.setItem("cart", JSON.stringify(defaultState));
+      return defaultState;
+    },
     removeItem: (state, action) => {
       const { cartId } = action.payload.product;
       const product = state.cartItems.find((item) => item.cartId === cartId);
@@ -63,6 +67,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, editItem } = cartSlice.actions;
+export const { addItem, clearCart, removeItem, editItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

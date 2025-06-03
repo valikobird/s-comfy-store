@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const themes = {
   corporate: "corporate",
@@ -21,6 +22,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    logoutUser: (state) => {
+      state.user = null;
+      localStorage.removeItem("user");
+      toast.success("Logged out successfully.");
+    },
     toggleTheme: (state) => {
       const { corporate, business } = themes;
       state.theme = state.theme === corporate ? business : corporate;
@@ -34,6 +40,6 @@ function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
 }
 
-export const { toggleTheme } = userSlice.actions;
+export const { logoutUser, toggleTheme } = userSlice.actions;
 
 export default userSlice.reducer;
