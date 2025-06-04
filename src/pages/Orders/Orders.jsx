@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import {
   OrdersList,
-  PaginationContainer,
+  PaginationContainerAdvanced,
   SectionTitle,
 } from "../../components";
 
@@ -15,7 +15,7 @@ const Orders = () => {
     <>
       <SectionTitle text="Your orders" />
       <OrdersList />
-      <PaginationContainer />
+      <PaginationContainerAdvanced />
     </>
   );
 };
