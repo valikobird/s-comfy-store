@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-import { customFetch } from "../../utils/index.jsx";
+import { customFetch } from "../../utils";
 
 const loader = (store) => {
   return async ({ request }) => {
@@ -11,7 +11,7 @@ const loader = (store) => {
     }
 
     const params = Object.fromEntries([
-      new URL(request.url).searchParams.entries(),
+      ...new URL(request.url).searchParams.entries(),
     ]);
 
     try {
