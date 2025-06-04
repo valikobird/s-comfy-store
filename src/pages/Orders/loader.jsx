@@ -2,7 +2,24 @@ import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../../utils";
 
-const loader = (store) => {
+const url = "/orders";
+
+const ordersQuery = (urlParams, user) => {
+  const page = urlParams.page ? +urlParams.page : 1;
+
+  return {
+    queryKey: ["orders", user.id, page],
+    queryFn: () =>
+      customFetch.get(url, {
+        params: urlParams,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
+
+const loader = (store, queryClient) => {
   return async ({ request }) => {
     const user = store.getState().userState.user;
     if (!user) {
@@ -15,12 +32,9 @@ const loader = (store) => {
     ]);
 
     try {
-      const response = await customFetch.get("/orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(params, user),
+      );
 
       const orders = response.data.data;
       const meta = response.data.meta;
@@ -35,7 +49,7 @@ const loader = (store) => {
         "There is an issue with loading your orders";
       toast.error(errorMessage);
 
-      if (error.response.status === 401 || error.response.status === 403) {
+      if (error?.response?.status === 401 || error?.response?.status === 403) {
         return redirect("/login");
       }
       return null;
