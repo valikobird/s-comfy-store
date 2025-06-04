@@ -3,7 +3,7 @@ import { redirect } from "react-router-dom";
 import { customFetch, formatPrice } from "../../utils";
 import { clearCart } from "../../features/cart/cartSlice";
 
-export const action = (store) => {
+export const action = (store, queryClient) => {
   return async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -32,6 +32,7 @@ export const action = (store) => {
         },
       );
 
+      queryClient.removeQueries(["orders"]);
       store.dispatch(clearCart());
       toast.success("Order placed successfully");
 
